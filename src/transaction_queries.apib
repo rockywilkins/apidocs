@@ -1,85 +1,77 @@
 # Group Publisher Transaction Queries
 
-## Publisher Transaction Queries
+## Publisher Transaction Queries [/user/publisher/{pid}/tq/{tq_id}]
 
 ### List all TQs [GET]
+List all TQs for the current publisher.
 
-### Create a TQ [POST]
-
-### Delete a TQ [POST]
-
-# Group Campaign Transaction Queries
-
-## Campaign Transaction Queries [/campaign/{campaign_id}/tq]
-
-### List all TQs [GET]
-
-List all TQs for a campaign
++ Parameters
+    + pid: 38 (string, required) - Id of the publisher
 
 + Request (application/json; charset=utf-8)
+    + Attributes
+      + transaction_query_id: 12a43 (string) - Filter by Transaction Query Id
+      + transaction_query_type: Untracked (string) - Filter by Transaction Query Type
+      + publisher_reference: 55c31 (string) - Filter by Publisher Reference
+      + conversion_reference: 11y43 (string) - Filter by Conversion Reference
+      + created_at: `2016-04-08` (string) - Filter by Creation Date
+      + updated_at: `2016-04-09` (string) - Filter by Update Date
+      + conversion_date_time: `2016-04-08 01:22:31` (string) - Filter by Conversion Date Time
+      + campaign_id: 10c44 (string) - Filter by Campaign Id
+      + current_state: approved (string) - Filter by Transaction Query State
+      + sort_column: updated_at (string) - Order the result by the provided column
+      + order_by: asc (string) - Change the sort direction
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes
         + transaction_queries (array[Transaction Query Wrapper])
 
-## Approve Campaign Transaction Query [/campaign/{campaign_id}/tq/{tq_id}/approve]
+### Create a TQ [POST]
+Create new transaction queries.
 
-### Approve a TQ [POST]
-
-Approve a TQ
++ Parameters
+    + pid: 38 (string, required) - Id of the publisher
 
 + Request (application/json; charset=utf-8)
+    + Attributes
+        + transaction_queries (array)
+            + (object)
+                + camref: 12c77 (string, required) - Campaign Reference of the transaction query
+                + conversion_reference: 68j31 (string, required)
+                + transaction_query_type: untracked (string, required)
+                + conversion_currency: GBP (string, required)
+                + expected_commission: 45.32 - Required for Incorrect Comission and Untracked TQ types. Optional for Declined
+                + notes: this is an example (optional)
+                + publisher_reference: (optional)
+                + conversion_date_time: `2016-01-01 00:00:00` - Required for Untracked TQ type
+                + conversion_value: 599
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes
-        + transaction_query (Transaction Query)
+        + job (object)
+            + job_id: 111111l300388
+            + created_at: `2016-11-25 16:21:55`
+            + completed_at: null
+            + created_by: 5
+            + created_by_url: user/publisher/1/tq.json
+            + status: created
+            + percentage_complete: 0
+            + reference: null
+            + response_within_retention: false
+            + hypermedia (object)
+                + response: null
+                + update: /job/111111l300388.json
+            + estimated_completion: null
+            + time_elapsed: 0
 
-## Reject Campaign Transaction Query [/campaign/{campaign_id}/tq/{tq_id}/reject]
+### Delete a TQ [DELETE]
+Delete a transaction query.
 
-### Reject a TQ [POST]
-
-+ Request (application/json; charset=utf-8)
++ Parameters
+    + pid: 38 (string, required) - Id of the publisher
+    + tq_id: 52 (string, required) - Id of the transaction query
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes
-        + transaction_query (Transaction Query)
-
-## Batch Process Campaign Transaction Queries [/campaign/{campaign_id}/tq/process]
-
-### Batch process TQs [POST]
-
-## Transaction Query Reasons [/campaign/{campaign_id}/tq_reasons]
-
-### List all TQ reasons [GET]
-
-### Create a TQ reason [POST]
-
-### Delete a TQ reason [POST]
-
-## Transaction Query (object)
-+ transaction_query_id: 100l1892 (required) - ID of the transaction query
-+ transaction_query_type: untracked (required)
-+ camref: i9sh
-+ notes: `This is an example`
-+ publisher_reference
-+ publisher_id: 1l1007802 - ID of the publisher
-+ campaign_id: 10l176 - ID of the campaign
-+ conversion_date_time: `2016-01-01 00:00:00`
-+ conversion_reference
-+ conversion_id
-+ conversion_value
-+ conversion_currency: (Currency)
-+ created_at: `2016-01-01 00:00:00`
-+ updated_at: `2016-01-01 00:00:00`
-+ current_state (enum)
-    + pend
-    + approve
-    + reject
-+ state_history
-+ expected_commission
-+ Include Campaign Wrapper
-+ Include Publisher Wrapper
-+ actions_available (array)
-
-## Transaction Query Wrapper (object)
-+ transaction_query (Transaction Query)
+        + transaction_query (array)
+            + deleted: 45b88

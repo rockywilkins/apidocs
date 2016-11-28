@@ -2053,3 +2053,31 @@ level `conversions` array.
 
 ## Website Types Wrapper (object)
 + website_type (Website Type)
+
+## Transaction Query (object)
++ transaction_query_id: 100l1892 (required) - ID of the transaction query
++ transaction_query_type: untracked (required)
++ camref: i9sh
++ notes: `This is an example`
++ publisher_reference
++ publisher_id: 1l1007802 - ID of the publisher
++ campaign_id: 10l176 - ID of the campaign
++ conversion_date_time: `2016-01-01 00:00:00`
++ conversion_reference
++ conversion_id
++ conversion_value
++ conversion_currency: (Currency)
++ created_at: `2016-01-01 00:00:00`
++ updated_at: `2016-01-01 00:00:00`
++ current_state (enum)
+    + pend
+    + approve
+    + reject
++ state_history
++ expected_commission
++ Include Campaign Wrapper
++ Include Publisher Wrapper
++ actions_available (array)
+
+## Transaction Query Wrapper (object)
++ transaction_query (Transaction Query)
