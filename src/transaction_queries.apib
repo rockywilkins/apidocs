@@ -75,3 +75,110 @@ Delete a transaction query.
     + Attributes
         + transaction_query (array)
             + deleted: 45b88
+
+# Group Campaign Transaction Queries
+
+## Campaign Transaction Queries [/campaign/{campaign_id}/tq]
+
+### List all TQs [GET]
+
+List all TQs for a campaign
+
++ Parameters
+    + campaign_id: 13 (string, required) - Id of the campaign
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + transaction_queries (array[Transaction Query Wrapper])
+
+## Approve Campaign Transaction Query [/campaign/{campaign_id}/tq/{tq_id}/approve]
+
+### Approve a TQ [POST]
+
+Approve a TQ
+
++ Parameters
+    + campaign_id: 13 (string, required) - Id of the campaign
+    + tq_id: 52 (string, required) - Id of the transaction query
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + transaction_query (Transaction Query)
+
+## Reject Campaign Transaction Query [/campaign/{campaign_id}/tq/{tq_id}/reject]
+
+### Reject a TQ [POST]
+
+Reject a TQ
+
++ Parameters
+    + campaign_id: 13 (string, required) - Id of the campaign
+    + tq_id: 52 (string, required) - Id of the transaction query
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + transaction_query (Transaction Query)
+
+## Batch Process Campaign Transaction Queries [/campaign/{campaign_id}/tq/process]
+
+### Batch process TQs [POST]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + transaction_queries (array)
+            + (object)
+                + transaction_query_id (string, required)
+                + new_state (string, required)
+                + new_expected_commission (string)
+                + new_reason (string)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + (Job Wrapper)
+
+## Transaction Query Reasons [/campaign/{campaign_id}/tq_reasons]
+
+### List all TQ reasons [GET]
+
++ Parameters
+    + campaign_id: 13 (string, required) - Id of the campaign
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + transaction_query_reasons (array)
+            + (object)
+                + transaction_query_reason (object)
+                    + transaction_query_reason_id (string)
+                    + reason (string)
+                    + campaign_id (string)
+                    + created_at (string)
+
+### Create a TQ reason [POST]
+
++ Parameters
+    + campaign_id: 13 (string, required) - Id of the campaign
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + reason (string, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + transaction_query_reason (object)
+            + transaction_query_reason_id (string)
+            + reason (string)
+            + campaign_id (string)
+            + created_at (string)
+
+## Delete a TQ Reason [/campaign/{campaign_id}/tq_reasons/{reason_id}/delete]
+
+### Delete a TQ reason [POST]
+
++ Parameters
+    + campaign_id: 13 (string, required) - Id of the campaign
+    + reason_id: 7937 (string, required) - Id of the reason
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + transaction_query_reason (object)
+            + deleted (boolean)
