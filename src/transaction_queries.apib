@@ -87,6 +87,20 @@ List all TQs for a campaign
 + Parameters
     + campaign_id: 13 (string, required) - Id of the campaign
 
++ Request (application/json; charset=utf-8)
+    + Attributes
+      + transaction_query_id: 12a43 (string) - Filter by Transaction Query Id
+      + transaction_query_type: Untracked (string) - Filter by Transaction Query Type
+      + publisher_reference: 55c31 (string) - Filter by Publisher Reference
+      + conversion_reference: 11y43 (string) - Filter by Conversion Reference
+      + created_at: `2016-04-08` (string) - Filter by Creation Date
+      + updated_at: `2016-04-09` (string) - Filter by Update Date
+      + conversion_date_time: `2016-04-08 01:22:31` (string) - Filter by Conversion Date Time
+      + campaign_id: 10c44 (string) - Filter by Campaign Id
+      + current_state: approved (string) - Filter by Transaction Query State
+      + sort_column: updated_at (string) - Order the result by the provided column
+      + order_by: asc (string) - Change the sort direction
+
 + Response 200 (application/json; charset=utf-8)
     + Attributes
         + transaction_queries (array[Transaction Query Wrapper])
@@ -101,6 +115,11 @@ Approve a TQ
     + campaign_id: 13 (string, required) - Id of the campaign
     + tq_id: 52 (string, required) - Id of the transaction query
 
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + expected_commission
+        + reason
+
 + Response 200 (application/json; charset=utf-8)
     + Attributes
         + transaction_query (Transaction Query)
@@ -114,6 +133,11 @@ Reject a TQ
 + Parameters
     + campaign_id: 13 (string, required) - Id of the campaign
     + tq_id: 52 (string, required) - Id of the transaction query
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + expected_commission
+        + reason
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes
